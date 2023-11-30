@@ -1,0 +1,10 @@
+<p>Dashboard general del ambiente {{ambiente}}</p>
+
+<nav>
+    <ul>
+        <li><a routerLink="general" [queryParams]="parametros">Dashboard General</a></li>
+        <li><a [routerLink]="[ambiente]">Dashboard detalle ambiente</a></li>
+    </ul>
+</nav>
+
+<router-outlet></router-outlet>

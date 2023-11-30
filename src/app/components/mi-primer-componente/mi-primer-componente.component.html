@@ -1,0 +1,58 @@
+<p>mi-primer-componente works!</p>
+<p>Bienvenid@ {{mensaje}}</p>
+<p [ngStyle]="{'color': colorStyle}">{{mensajeInicializacion}}</p>
+<img [alt]="textoImagen" [src]="urlImagen" />
+
+<button type="button" (click)="saludar()">Saludar</button>
+<app-mi-componente-hijo (messageEvent)="recibirMensaje($event)" [mensaje]="mensajePadre | capitalizar"></app-mi-componente-hijo>
+
+<div *ngIf="esEspecial">
+    <p>Este mensaje si esEspecial es verdadero</p>
+</div>
+<div *ngIf="!esEspecial">
+    <p>Este mensaje si esEspecial es falso</p>
+</div>
+
+<h3>Uso de ngFor</h3>
+<section>
+    <p *ngFor="let persona of personas">
+            {{persona.nombre}} 
+            - {{persona.edad}} 
+            - {{persona.vacuna ? 'vacunado':'no vacunado'}}
+    </p>
+</section>
+
+<h2>Uso de ngSwitch</h2>
+<div [ngSwitch]="color">
+    <p *ngSwitchCase="'rojo'">El color es rojo</p>
+    <p *ngSwitchCase="'azul'">El color es azul</p>
+    <p *ngSwitchCase="'verde'">El color es verde</p>
+    <p *ngSwitchDefault>El color es desconocido</p>
+</div>
+
+<h2>Uso ng-template y ng-container</h2>
+
+<ng-template #miTemplate let-param1="nombre" let-param2="edad">
+    <p>Este es mi template. Nombre {{param1}}, Edad {{param2}}</p>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="miTemplate; context:{nombre: 'Pepe', edad:'22'}">
+</ng-container>
+
+<ng-container *ngFor="let persona of personas">
+    <ng-container *ngTemplateOutlet="miTemplate; context:{nombre: persona.nombre, edad: persona.edad}" />
+</ng-container>
+
+<h2>Uso directiva textColor</h2>
+<p appTextColor="green">Este es la prueba</p>
+
+<h2>Uso de Pipes</h2>
+<p>ejemplo slice pipe: {{mensajePipes | slice:0:12}}</p>
+<p>ejemplo  number: {{numero | number: '3.1-1'}}</p>
+<p>ejemplo  currency: {{numero | currency: 'USD'}}</p>
+<p>ejemplo  json: {{personas | json}}</p>
+<p>ejemplo slice pipe: {{mensajePipes | uppercase}}</p>
+<p>ejemplo slice pipe: {{mensajePipes | lowercase}}</p>
+
+<p>ejemplo custom pipe: {{mensajePipes | capitalizar}}</p>
+

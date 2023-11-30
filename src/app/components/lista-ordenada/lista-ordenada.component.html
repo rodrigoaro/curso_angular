@@ -1,0 +1,10 @@
+<p>lista-ordenada works!</p>
+
+<input #itemInput class="form-control" (keyup.enter)="addObj(itemInput)">
+<ol *ngIf="lista" class="list-group">
+    <li *ngFor="let obj of lista">
+        <button type="button" (click)="removeItem(obj)" class="list-group-item">
+            {{ obj }}
+        </button>
+    </li>
+</ol>

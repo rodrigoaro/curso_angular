@@ -1,0 +1,51 @@
+<p>formulario-uno works!</p>
+
+{{ formData | json }}
+
+<form #myform="ngForm" (ngSubmit)="myform.form.valid && onSubmit(myform);">
+    <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input #name="ngModel" type="text" id="name" name="name" [(ngModel)]="formData.name" class="form-control" required minlength="5">
+        <div *ngIf="(name.touched || myform.submitted) && name.hasError('required')">El nombre es requerido</div>
+        <div *ngIf="(name.touched || myform.submitted) && name.hasError('minlength')">El campo nombre debe tener al menos 5 caracteres.</div>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Apellido:</label>
+        <input #lastName="ngModel" type="text" id="lastName" name="lastName" [(ngModel)]="formData.lastName" required minlength="5">
+        <div *ngIf="(lastName.touched || myform.submitted) && lastName.hasError('required')">El apellido es requerido</div>
+        <div *ngIf="(lastName.touched || myform.submitted) && lastName.hasError('minlength')">El campo apellido debe tener al menos 5 caracteres.</div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="birthdate">Fecha de nacimiento:</label>
+        <input #birthdate="ngModel" type="date" id="birthdate" name="birthdate" [(ngModel)]="formData.birthdate" required>
+        <div *ngIf="(birthdate.touched || myform.submitted) && birthdate.hasError('required')">La fecha de nacimiento es requerida</div>
+    </div>
+
+    <div class="form-group">
+        <label for="gender">Género:</label>
+
+        <input #gender="ngModel" type="radio" id="male" name="gender" value="male" [(ngModel)]="formData.gender" required>
+        <label for="male">Male</label>
+
+        <input #gender="ngModel" type="radio" id="male" name="gender" value="female" [(ngModel)]="formData.gender" required>
+        <label for="male">Female</label>
+        <div *ngIf="(gender.touched || myform.submitted) && gender.hasError('required')">El género es requerido.</div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="calificacion">Calificación:</label>
+        <input #calificacion="ngModel" type="number" id="calificacion" name="calificacion" [(ngModel)]="formData.calificacion" required min="5" max="20">
+        
+        <div *ngIf="(calificacion.touched || myform.submitted) && calificacion.hasError('required')">El calificación es requerido.</div>
+        <div *ngIf="(calificacion.touched || myform.submitted) && calificacion.hasError('min')">El calificación debe ser al menos 5.</div>
+        <div *ngIf="(calificacion.touched || myform.submitted) && calificacion.hasError('max')">El calificación debe ser máximo 20.</div>
+
+    </div>
+
+
+    <button type="submit">Enviar Datos</button>
+</form>
